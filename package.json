@@ -28,6 +28,11 @@
   },
   "homepage": "https://github.com/SahanNimeshWeerakoon/create-mern-app#readme",
   "dependencies": {
-    "esm": "^3.2.25"
+    "arg": "^4.1.3",
+    "chalk": "^4.1.0",
+    "commander": "^6.0.0",
+    "esm": "^3.2.25",
+    "inquirer": "^7.3.3",
+    "ncp": "^2.0.0"
   }
 }
