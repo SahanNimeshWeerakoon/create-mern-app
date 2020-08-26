@@ -12,20 +12,31 @@ const copyTemplateFiles = async options => {
 	return copy(options.templateDirectory, options.targetDirectory, { clobber: false });
 }
 
+const setTemplateDir = async options => {
+	let templateName = 'MERN_boilerplate';
+	if(options.redux) {
+		templateName = 'MERN_redux_boilerplate';
+	}
+
+	return templateName;
+}
+
 export const createProject = async options => {
+	const template = await setTemplateDir(options);
 	options = {
 		...options,
-		targetDirectory: options.targetDirectory || process.cwd()
+		targetDirectory: options.targetDirectory || process.cwd(),
+		template
 	}
 
 	const templateDirectory = path.resolve(
 		__filename,
 		'../../templates',
-		options.template.toLowercase()
+		options.template
 	);
 
 	options.templateDirectory = templateDirectory;
-
+	
 	try {
 		await access(templateDirectory, fs.constants.R_OK);
 	} catch(err) {
@@ -37,4 +48,5 @@ export const createProject = async options => {
 	await copyTemplateFiles(options);
 
 	console.log('%s Project ready', chalk.green.bold('DONE'));
+	return true;
 }
