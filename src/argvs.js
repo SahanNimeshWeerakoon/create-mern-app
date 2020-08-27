@@ -7,6 +7,8 @@ export const parseArgumentsIntoOptions = (rawArgs) => {
 			'--git': Boolean,
 			'--scss': Boolean,
 			'--redux': Boolean,
+			'--install': Boolean,
+			'-i': '--install',
 			'--yes': Boolean,
 			'-y': '--yes'
 		}
@@ -16,7 +18,8 @@ export const parseArgumentsIntoOptions = (rawArgs) => {
 		skipPrompt: args['--yes'] || false,
 		git: args['--git'] || false,
 		scss: args['--scss'] || false,
-		redux: args['--redux'] || false
+		redux: args['--redux'] || false,
+		runInstall: args['--install'] || false
 	}
 }
 
