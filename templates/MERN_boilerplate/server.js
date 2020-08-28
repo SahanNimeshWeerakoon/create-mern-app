@@ -15,8 +15,11 @@ mongoose
 	.then(() => console.log('Mongodb is conencted'))
 	.catch(err => console.log(err));
 
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
+// app.use('/api/users', require('./routes/api/users'));
+// app.use('/api/auth', require('./routes/api/auth'));
+app.get('/', (req, res) => {
+	res.end('This comes from the server');
+});
 
 const PORT = process.env.PORT || 5000;
 
