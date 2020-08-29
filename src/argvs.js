@@ -40,14 +40,14 @@ export const promptForMissingArgs = async (options) => {
 			default: false
 		});
 	}
-	if(!options.scss) {
-		questions.push({
-			type: 'confirm',
-			name: 'scss',
-			message: 'Do you want to implement scss?',
-			default: false
-		});
-	}
+	// if(!options.scss) {
+	// 	questions.push({
+	// 		type: 'confirm',
+	// 		name: 'scss',
+	// 		message: 'Do you want to implement scss?',
+	// 		default: false
+	// 	});
+	// }
 	if(!options.redux) {
 		questions.push({
 			type: 'confirm',

@@ -23,6 +23,7 @@ const initGit = async options => {
 }
 
 const copyTemplateFiles = async options => {
+
 	return copy(options.templateDirectory, options.targetDirectory, { clobber: false });
 }
 
@@ -33,6 +34,15 @@ const setTemplateDir = async options => {
 	}
 
 	return templateName;
+}
+
+const installDependencies = options => {
+	projectInstall({
+		cwd: options.targetDirectory
+	})
+	// projectInstall({
+	// 	cwd: path.join(options.targetDirectory, 'client')
+	// })
 }
 
 export const createProject = async options => {
@@ -58,6 +68,8 @@ export const createProject = async options => {
 		process.exit(1);
 	}
 
+	console.log(options.targetDirectory);
+
 	const tasks = new Listr([
 		{
 			title: 'Copy project files',
@@ -69,12 +81,19 @@ export const createProject = async options => {
 			enabled: () => options.git
 		},
 		{
-			title: 'Install dependencies',
+			title: 'Install backend dependencies',
 			task: () => projectInstall({
 				cwd: options.targetDirectory
 			}),
 			skip: () => !options.runInstall ? 'Pass --isntall to automatically install dependencies' : undefined
-		}
+		},
+		{
+			title: 'Install front end dependencies',
+			task: () => projectInstall({
+				cwd: path.join(options.targetDirectory, 'client')
+			}),
+			skip: () => !options.runInstall ? 'Pass --isntall to automatically install dependencies' : undefined
+		},
 	]);
 
 	await tasks.run();

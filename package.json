@@ -2,7 +2,7 @@
   "name": "@phoenixxx/create-mern-app",
   "version": "1.0.0",
   "description": "A cli to create MERN stack application boilerplate.",
-  "main": "src/index.js",
+  "main": "./src/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
